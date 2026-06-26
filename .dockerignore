@@ -1,0 +1,29 @@
+Ignore Python cache
+
+pycache/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+Ignore virtual environments
+
+venv/
+env/
+.env
+
+Ignore git metadata
+
+.git/
+.gitignore
+
+Ignore local data caches (we will mount these via volumes instead of copying them)
+
+data/
+chroma_db/
+*.csv
+
+Ignore documentation assets
+
+docs/
+README.md

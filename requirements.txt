@@ -1,0 +1,15 @@
+chromadb==1.5.9
+ddgs==9.14.4
+langchain_core==1.4.8
+langchain_ollama==1.1.0
+lightning==2.6.5
+numpy==2.5.0
+optuna==4.9.0
+pandas==3.0.3
+plotly==6.8.0
+Requests==2.34.2
+streamlit==1.58.0
+timesfm==2.0.1
+torch==2.12.1
+xgboost==3.3.0
+yfinance==1.4.1

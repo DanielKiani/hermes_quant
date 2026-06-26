@@ -1,0 +1,53 @@
+Byte-compiled / optimized / DLL files
+
+pycache/
+*.py[cod]
+*$py.class
+
+C extensions
+
+*.so
+
+Operating System Files
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+Virtual Environments
+
+venv/
+venv*/
+.venv/
+env/
+.env
+ENV/
+env.bak/
+venv.bak/
+
+Streamlit config and secrets
+
+.streamlit/secrets.toml
+
+Project Specific Data & Vector Database Caches
+
+This ignores downloaded stock price CSVs and the local ChromaDB database
+
+data/
+chroma_db/
+*.csv
+*.log
+
+IDEs and Editors (VS Code, PyCharm, etc.)
+
+.vscode/
+.idea/
+*.suo
+.ntvs
+*.njsproj
+*.sln
+*.sw?
+
+Docker
+
+.docker/
