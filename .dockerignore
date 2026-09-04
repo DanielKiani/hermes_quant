@@ -1,0 +1,12 @@
+.git
+.github
+.venv
+venv
+__pycache__
+*.py[cod]
+*.log
+data
+chroma_db
+tests
+frontend
+src/app.py

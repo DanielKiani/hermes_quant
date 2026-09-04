@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hermes Quant combines observed market context, walk-forward model validation, strategy research and inspectable AI synthesis in one research terminal." />
+    <title>Hermes Quant | Evidence Before Conviction</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a id="landing-skip" class="skip-link" href="#landing-main">Skip to introduction</a>
+    <a id="terminal-skip" class="skip-link" href="#workspace" hidden>Skip to terminal</a>
+
+    <section id="landing-shell" class="landing-shell" aria-label="Hermes Quant introduction">
+      <nav class="landing-nav" aria-label="Landing navigation">
+        <a class="landing-brand" href="#landing-main" aria-label="Hermes Quant introduction">
+          <span class="landing-brand-mark"><img src="./media/hermes_logo.png" alt="" /></span>
+          <span><strong>HERMES <em>Quant</em></strong><small>Institutional research terminal · <span data-product-version>v0.6-Beta</span></small></span>
+        </a>
+        <button class="landing-nav-cta" type="button" data-enter-terminal>Open terminal <span aria-hidden="true">↗</span></button>
+      </nav>
+
+      <main id="landing-main" class="landing-story" tabindex="-1">
+        <div class="landing-stage" aria-hidden="true">
+          <picture class="landing-scene is-active" data-landing-scene="hero">
+            <source media="(max-width: 720px)" srcset="./media/landing_hero_mobile.png" />
+            <img src="./media/landing_hero.png" alt="" fetchpriority="high" />
+          </picture>
+          <picture class="landing-scene" data-landing-scene="signal">
+            <source media="(max-width: 720px)" srcset="./media/landing_signal_observatory_mobile.png" />
+            <img src="./media/landing_signal_observatory.png" alt="" loading="lazy" />
+          </picture>
+          <picture class="landing-scene" data-landing-scene="validation">
+            <source media="(max-width: 720px)" srcset="./media/landing_model_validation_mobile.png" />
+            <img src="./media/landing_model_validation.png" alt="" loading="lazy" />
+          </picture>
+          <picture class="landing-scene" data-landing-scene="committee">
+            <source media="(max-width: 720px)" srcset="./media/landing_ai_committee_mobile.png" />
+            <img src="./media/landing_ai_committee.png" alt="" loading="lazy" />
+          </picture>
+          <picture class="landing-scene" data-landing-scene="portfolio">
+            <source media="(max-width: 720px)" srcset="./media/landing_portfolio_risk_mobile.png" />
+            <img src="./media/landing_portfolio_risk.png" alt="" loading="lazy" />
+          </picture>
+          <picture class="landing-scene" data-landing-scene="gateway">
+            <source media="(max-width: 720px)" srcset="./media/landing_terminal_gateway_mobile.png" />
+            <img src="./media/landing_terminal_gateway.png" alt="" loading="lazy" />
+          </picture>
+          <div class="landing-stage-wash"></div>
+          <div class="landing-stage-grid"></div>
+          <span class="landing-gateway-mark"><img src="./media/hermes_logo.png" alt="" /></span>
+        </div>
+
+        <div class="landing-chapters">
+          <section class="landing-chapter is-current" data-landing-target="hero" aria-labelledby="landing-hero-title">
+            <div class="landing-chapter-inner landing-copy-left landing-hero-copy">
+              <p class="landing-kicker"><span></span> Evidence-led quantitative research</p>
+              <h1 id="landing-hero-title">Research the market.<br />Interrogate the evidence.</h1>
+              <p class="landing-lede">Hermes Quant brings observed market context, validated model research, strategy testing and inspectable AI synthesis into one terminal.</p>
+              <div class="landing-actions">
+                <button class="landing-primary" type="button" data-enter-terminal>Enter research terminal <span aria-hidden="true">→</span></button>
+                <button class="landing-secondary" type="button" data-landing-jump="signal">Explore the system</button>
+              </div>
+              <div class="landing-state-ledger" aria-label="Hermes evidence states">
+                <span><i class="state-observed"></i>Observed</span>
+                <span><i class="state-derived"></i>Derived</span>
+                <span><i class="state-simulated"></i>Simulated</span>
+                <span><i class="state-generated"></i>Generated</span>
+              </div>
+              <p class="landing-caveat">Research environment · Provider-delayed data · No broker connection</p>
+            </div>
+          </section>
+
+          <section class="landing-chapter" data-landing-target="signal" aria-labelledby="landing-signal-title">
+            <div class="landing-chapter-inner landing-feature landing-copy-left">
+              <div class="landing-feature-copy">
+                <p class="landing-index">01 / SIGNAL OBSERVATORY</p>
+                <h2 id="landing-signal-title">Markets are noisy.<br />Evidence should not be.</h2>
+                <p>Start with a cross-asset pulse, separate mover screens, verified event context and source-linked headlines—then choose what deserves deeper research.</p>
+                <ul class="landing-facts"><li>Equity and crypto research profiles</li><li>Provider-delayed observations</li><li>Explicit data provenance</li></ul>
+              </div>
+              <figure class="landing-product-frame">
+                <img src="./media/dashboard.png?v=2" alt="Hermes Quant market overview showing cross-asset data, movers, events and news" loading="lazy" />
+                <figcaption><span>LIVE INTERFACE</span> Market Command Center</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="landing-chapter" data-landing-target="validation" aria-labelledby="landing-validation-title">
+            <div class="landing-chapter-inner landing-feature landing-copy-left">
+              <div class="landing-feature-copy">
+                <p class="landing-index">02 / MODEL VALIDATION</p>
+                <h2 id="landing-validation-title">Validation before conviction.</h2>
+                <p>Hermes compares a regularized linear baseline with nonlinear candidates inside purged walk-forward folds. A model earns influence; it never receives it by default.</p>
+                <ul class="landing-facts"><li>Purged labels and embargoed folds</li><li>Probability-quality scoring</li><li>Costs, slippage and execution lag</li></ul>
+              </div>
+              <figure class="landing-product-frame">
+                <img src="./media/backtester_engine.png?v=2" alt="Hermes Quant strategy backtester with model, walk-forward and execution controls" loading="lazy" />
+                <figcaption><span>LIVE INTERFACE</span> Strategy Backtester</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="landing-chapter" data-landing-target="committee" aria-labelledby="landing-committee-title">
+            <div class="landing-chapter-inner landing-feature landing-copy-right">
+              <div class="landing-feature-copy">
+                <p class="landing-index">03 / AI COMMITTEE</p>
+                <h2 id="landing-committee-title">Four roles. One inspectable memo.</h2>
+                <p>A quantitative prior meets a bullish analyst, a bearish analyst and a portfolio judge. The conclusion remains subordinate to its source evidence—and visible for review.</p>
+                <ul class="landing-facts"><li>Competing theses, not one opaque answer</li><li>Follow-or-override reasoning</li><li>Generated output clearly labeled</li></ul>
+              </div>
+              <figure class="landing-product-frame">
+                <img src="./media/multiagent_ai_synth.png?v=2" alt="Hermes Quant AI Committee showing quantitative, bullish, bearish and judge roles" loading="lazy" />
+                <figcaption><span>LIVE INTERFACE</span> Evidence Committee</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="landing-chapter" data-landing-target="portfolio" aria-labelledby="landing-portfolio-title">
+            <div class="landing-chapter-inner landing-feature landing-copy-left">
+              <div class="landing-feature-copy">
+                <p class="landing-index">04 / PORTFOLIO RISK</p>
+                <h2 id="landing-portfolio-title">Risk belongs beside return.</h2>
+                <p>Move from a single ticker to the portfolio: observed valuation, allocation, historical one-day VaR and aligned return correlations in one browser-local workspace.</p>
+                <ul class="landing-facts"><li>Demonstration portfolio included</li><li>Browser-local positions</li><li>Assumptions stated beside results</li></ul>
+              </div>
+              <figure class="landing-product-frame">
+                <img src="./media/portfolio.png?v=2" alt="Hermes Quant portfolio overview with allocation, historical VaR and return correlation" loading="lazy" />
+                <figcaption><span>LIVE INTERFACE</span> Portfolio Overview</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="landing-chapter landing-gateway" data-landing-target="gateway" aria-labelledby="landing-gateway-title">
+            <div class="landing-chapter-inner landing-gateway-copy">
+              <p class="landing-index">05 / TERMINAL GATEWAY</p>
+              <h2 id="landing-gateway-title">Enter with context.</h2>
+              <p>Inspect the market. Test the model. Challenge the thesis. Measure the risk.</p>
+              <button class="landing-primary landing-final-cta" type="button" data-enter-terminal>Open Hermes Quant <span aria-hidden="true">→</span></button>
+              <p class="landing-final-note">Research and portfolio simulation only. Not investment advice or live execution.</p>
+            </div>
+          </section>
+        </div>
+
+        <nav class="landing-progress" aria-label="Landing chapters">
+          <div class="landing-progress-meter"><i></i></div>
+          <button class="is-active" type="button" data-landing-jump="hero" aria-label="Introduction"><span>00</span><b>Introduction</b></button>
+          <button type="button" data-landing-jump="signal" aria-label="Signal Observatory"><span>01</span><b>Signals</b></button>
+          <button type="button" data-landing-jump="validation" aria-label="Model Validation"><span>02</span><b>Validation</b></button>
+          <button type="button" data-landing-jump="committee" aria-label="AI Committee"><span>03</span><b>Committee</b></button>
+          <button type="button" data-landing-jump="portfolio" aria-label="Portfolio Risk"><span>04</span><b>Portfolio</b></button>
+          <button type="button" data-landing-jump="gateway" aria-label="Terminal Gateway"><span>05</span><b>Gateway</b></button>
+        </nav>
+
+        <div class="landing-scroll-cue" aria-hidden="true"><span>Scroll to inspect</span><i></i></div>
+      </main>
+    </section>
+
+    <div class="app-shell" hidden>
+      <header class="terminal-header">
+        <div class="header-command-row">
+          <a id="terminal-brand" class="brand" href="./" aria-label="Return to the Hermes Quant landing page">
+            <span class="brand-coin" aria-hidden="true"><img src="./media/hermes_logo.png" alt="" /></span>
+            <span class="brand-copy">
+              <strong>HERMES <em>Quant</em></strong>
+              <small>AI Fintech Analysis Terminal</small>
+            </span>
+          </a>
+          <div class="header-vitals" aria-label="Selected asset status">
+            <div><span>Observed price</span><strong id="header-price">—</strong></div>
+            <i></i>
+            <div><span>Observed change</span><strong id="header-change">—</strong></div>
+            <i></i>
+            <div><span>Data state</span><strong id="header-state" class="state-warn">Connecting</strong></div>
+          </div>
+        </div>
+        <div class="header-tool-row">
+          <nav class="primary-nav" aria-label="Primary navigation">
+            <button class="nav-button is-active" data-route="home">Home</button>
+            <button class="nav-button" data-route="market">Market Analysis</button>
+            <button class="nav-button" data-route="research">Research Lab</button>
+            <button class="nav-button" data-route="news">News</button>
+            <button class="nav-button" data-route="portfolio">Portfolio</button>
+            <button class="nav-button" data-route="academy">Quant Academy</button>
+          </nav>
+          <div class="header-workbench">
+            <div id="asset-class-switch" class="asset-class-switch" role="group" aria-label="Research asset class">
+              <button class="is-active" data-asset-class="equity"><span>Equities</span><small>252-day</small></button>
+              <button data-asset-class="crypto"><span>Crypto</span><small>365-day</small></button>
+            </div>
+            <form id="ticker-form" class="ticker-search" role="search">
+              <label class="sr-only" for="ticker-input">Search asset</label>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.6-4.6m2.1-5.4a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" /></svg>
+              <input id="ticker-input" value="" maxlength="15" autocomplete="off" spellcheck="false" placeholder="Choose an asset (AAPL, BTC-USD)" />
+              <button type="submit">Analyze</button>
+            </form>
+          </div>
+        </div>
+      </header>
+
+      <div id="static-demo-strip" class="static-demo-strip" role="status" hidden>
+        <strong>GitHub Pages demo</strong>
+        <span>Frozen provider snapshot for interface review. Run the local stack for current data, model training and generated analysis.</span>
+      </div>
+
+      <section class="market-tape-shell" aria-label="Live market ribbon">
+        <button id="tape-prev" class="tape-arrow" type="button" aria-label="Scroll market ribbon left">‹</button>
+        <div id="market-tape" class="market-tape" aria-label="Provider-delayed market overview">
+          <div id="market-tape-track" class="market-tape-track"><div class="tape-loading">Loading market overview…</div></div>
+        </div>
+        <button id="tape-next" class="tape-arrow" type="button" aria-label="Scroll market ribbon right">›</button>
+      </section>
+
+      <div class="legal-strip" role="note">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2 21h20L12 3Zm0 6v5m0 3v.01" /></svg>
+        <span><strong>Research environment.</strong> Provider-delayed data, model estimates and historical simulations are not investment advice or live execution. Hermes is not a broker.</span>
+      </div>
+
+      <main id="workspace" tabindex="-1">
+        <section id="home-view" class="view is-active" aria-labelledby="home-heading">
+          <div class="view-heading home-heading">
+            <div><span class="eyebrow">Daily market briefing</span><h1 id="home-heading">Market Command Center</h1><p>A source-linked overview before you choose an asset to research.</p></div>
+            <div class="home-asof"><span class="status-dot"></span><span id="home-asof">Connecting to providers…</span></div>
+          </div>
+          <div class="home-top-grid">
+            <section class="glass-panel home-pulse-panel">
+              <div class="panel-heading"><div><h2>Cross-asset pulse</h2><p id="home-market-source">Provider-delayed observations</p></div><span class="data-badge observed">Observed</span></div>
+              <div id="home-macro-list" class="home-pulse-grid"><div class="feed-empty">Loading market pulse…</div></div>
+            </section>
+            <section class="glass-panel events-panel">
+              <div class="panel-heading"><div><h2>Upcoming events</h2><p>Issuer dates and official Treasury auctions</p></div><button id="open-events" class="text-action" type="button">Expand calendar</button></div>
+              <div id="home-events-list" class="event-list"><div class="feed-empty">Loading verified events…</div></div>
+            </section>
+          </div>
+          <div class="home-bottom-grid">
+            <section class="glass-panel movers-board">
+              <div class="panel-heading"><div><h2>Market movers</h2><p id="mover-method">Separate most-active, gainer, and loser screens</p></div><span class="data-badge observed">Observed</span></div>
+              <div id="home-movers" class="mover-columns"><div class="feed-empty">Loading mover screens…</div></div>
+            </section>
+            <section class="glass-panel home-news-panel">
+              <div class="panel-heading"><div><h2>What matters today</h2><p>Source headlines only</p></div><button class="text-action" data-route-link="news">Open news hub</button></div>
+              <div id="home-news-list" class="news-feed"><div class="feed-empty">Loading market headlines…</div></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="market-view" class="view" aria-labelledby="asset-ticker">
+          <div id="market-state" class="inline-state is-loading" role="status">Loading selected asset…</div>
+
+          <div class="market-workspace">
+            <aside class="asset-rail glass-panel" aria-label="Asset summary and fundamentals">
+              <div class="asset-heading">
+                <div>
+                  <h1 id="asset-ticker">AAPL</h1>
+                  <p id="asset-name">Apple Inc.</p>
+                </div>
+                <span id="asset-type" class="data-badge observed">Observed</span>
+              </div>
+              <div class="asset-quote">
+                <strong id="asset-price">—</strong>
+                <span id="asset-change" class="neutral">—</span>
+              </div>
+
+              <div id="fundamental-grid" class="fundamental-grid"></div>
+
+              <section class="performance-card">
+                <div class="panel-heading compact">
+                  <h2>Price performance</h2>
+                  <select id="performance-period" aria-label="Performance period">
+                    <option value="period">Chart range</option>
+                    <option value="52w">52 weeks</option>
+                  </select>
+                </div>
+                <div class="range-labels"><span>Low <strong id="range-low">—</strong></span><span>High <strong id="range-high">—</strong></span></div>
+                <div class="range-track"><i id="range-position"></i></div>
+                <div class="trend-pair">
+                  <div><span>20-day average</span><strong id="left-sma20">—</strong></div>
+                  <div><span>50-day average</span><strong id="left-sma50">—</strong></div>
+                </div>
+              </section>
+
+              <section class="about-asset">
+                <div class="panel-heading compact"><h2>About</h2><span id="asset-sector">—</span></div>
+                <p id="asset-description">Description unavailable.</p>
+                <button id="toggle-about" class="text-action" hidden>View more</button>
+              </section>
+            </aside>
+
+            <section class="analysis-column">
+              <div class="analysis-terminal glass-panel">
+                <div class="subtabs" role="tablist" aria-label="Market analysis tools">
+                  <button class="subtab is-active" role="tab" data-analysis-tab="chart">Advanced Charting</button>
+                  <button class="subtab" role="tab" data-analysis-tab="options">Volatility Surface</button>
+                </div>
+
+                <section id="chart-panel" class="analysis-panel is-active" role="tabpanel">
+                  <div class="chart-controls">
+                    <div id="period-picker" class="control-cluster" aria-label="Chart period">
+                      <button data-period="1mo">1M</button>
+                      <button data-period="3mo">3M</button>
+                      <button class="is-active" data-period="6mo">6M</button>
+                      <button data-period="1y">1Y</button>
+                      <button data-period="2y">2Y</button>
+                      <button data-period="5y">5Y</button>
+                    </div>
+                    <div id="chart-type-picker" class="control-cluster" aria-label="Chart type">
+                      <button class="is-active" data-chart-type="line">Line</button>
+                      <button data-chart-type="candlestick">Candles</button>
+                    </div>
+                    <div id="chart-scale-picker" class="control-cluster" aria-label="Price scale">
+                      <button class="is-active" data-chart-scale="linear">Linear</button>
+                      <button data-chart-scale="log">Log</button>
+                    </div>
+                    <div class="indicator-toggles" aria-label="Chart indicators">
+                      <label><input id="show-sma" type="checkbox" checked />Averages</label>
+                      <label><input id="show-volume" type="checkbox" checked />Volume</label>
+                      <label><input id="show-rsi" type="checkbox" checked />RSI</label>
+                    </div>
+                  </div>
+                  <div id="price-chart" class="chart-shell large" aria-label="Price chart"></div>
+                  <div class="chart-legend">
+                    <span><i class="key-price"></i>Observed close</span>
+                    <span><i class="key-sma20"></i>SMA 20</span>
+                    <span><i class="key-sma50"></i>SMA 50</span>
+                    <span><i class="key-volume"></i>Volume</span>
+                    <span><i class="key-rsi"></i>RSI 14</span>
+                    <span class="legend-hint">Move across the chart for exact values</span>
+                  </div>
+                  <div class="technical-strip">
+                    <div><span>RSI 14</span><strong id="tech-rsi">—</strong></div>
+                    <div><span>Annualized volatility</span><strong id="tech-volatility">—</strong></div>
+                    <div><span>Trend</span><strong id="tech-trend">—</strong></div>
+                    <div><span>Last observation</span><strong id="tech-asof">—</strong></div>
+                  </div>
+                </section>
+
+                <section id="options-panel" class="analysis-panel" role="tabpanel">
+                  <div class="panel-heading">
+                    <div><h2>Listed options and implied volatility</h2><p>First four expirations · provider-delayed</p></div>
+                    <button id="load-options" class="secondary-action">Load options</button>
+                  </div>
+                  <div id="options-state" class="empty-state"><strong>Options not loaded</strong><p>This request runs only when needed. Crypto and many OTC assets have no standard listed chain.</p></div>
+                </section>
+              </div>
+
+            </section>
+
+            <aside class="market-sidebar" aria-label="Market context">
+              <section class="glass-panel sidebar-panel">
+                <div class="panel-heading compact"><h2>Macro environment</h2><span class="data-badge observed">Observed</span></div>
+                <div id="macro-list" class="macro-list"><p class="muted">Loading…</p></div>
+              </section>
+
+              <section class="glass-panel sidebar-panel movers-panel">
+                <div class="panel-heading compact"><h2>Market movers</h2><span class="data-badge observed">Observed</span></div>
+                <div class="mover-stack">
+                  <section><h3>Trending <small>most active</small></h3><div id="movers-trending" class="movers-list"><p class="muted">Loading…</p></div></section>
+                  <section><h3>Gainers <small>day change</small></h3><div id="movers-gainers" class="movers-list"><p class="muted">Loading…</p></div></section>
+                  <section><h3>Losers <small>day change</small></h3><div id="movers-losers" class="movers-list"><p class="muted">Loading…</p></div></section>
+                </div>
+              </section>
+
+              <section class="glass-panel sidebar-panel">
+                <div class="panel-heading compact"><h2>Relevant news</h2><button class="text-action" data-route-link="news">View all</button></div>
+                <div id="sidebar-news" class="sidebar-news"><p class="muted">Loading…</p></div>
+              </section>
+
+              <section class="glass-panel sidebar-panel compact-events-panel">
+                <div class="panel-heading compact"><h2>Upcoming events</h2><button class="text-action" data-events-open type="button">Calendar</button></div>
+                <div id="sidebar-events-list" class="event-list compact"><p class="muted">Loading…</p></div>
+              </section>
+
+              <section class="glass-panel provenance-panel">
+                <div><span class="status-dot"></span><strong>Source status</strong></div>
+                <p id="source-status">Waiting for provider response.</p>
+              </section>
+            </aside>
+          </div>
+        </section>
+
+        <section id="research-view" class="view" aria-labelledby="research-heading">
+          <div class="view-heading research-heading">
+            <div><h1 id="research-heading">Research Lab</h1><p>Model validation, historical simulation, and evidence-constrained committee analysis for <strong id="research-ticker">AAPL</strong>.</p></div>
+            <div class="research-context"><span id="research-class" class="data-badge derived">Equities</span><small id="research-calendar">Exchange trading days · 252-day annualization</small></div>
+          </div>
+
+          <div class="research-tabs" role="tablist" aria-label="Research tools">
+            <button class="is-active" role="tab" data-research-tab="models">Model Lab</button>
+            <button role="tab" data-research-tab="backtester">Strategy Backtester</button>
+            <button role="tab" data-research-tab="committee">AI Committee</button>
+          </div>
+
+          <section id="models-research-panel" class="research-panel is-active" role="tabpanel">
+            <div class="model-gate-grid">
+              <article class="model-gate glass-panel baseline">
+                <div><span class="model-rank">Baseline</span><span class="data-badge derived">Production candidate</span></div>
+                <h2>Regularized logistic regression</h2>
+                <p>A deliberately simple probability baseline. Its job is to expose whether nonlinear complexity adds value out of sample.</p>
+                <dl><div><dt>Strength</dt><dd>Stable, interpretable probabilities</dd></div><div><dt>Gate</dt><dd>Purged validation log loss</dd></div></dl>
+              </article>
+              <article class="model-gate glass-panel candidate">
+                <div><span class="model-rank">Nonlinear</span><span class="data-badge predicted">Validation gated</span></div>
+                <h2>XGBoost</h2>
+                <p>Useful for nonlinear interactions in engineered tabular features, but only selected when it beats the linear baseline inside the training window.</p>
+                <dl><div><dt>Strength</dt><dd>Nonlinear interactions</dd></div><div><dt>Risk</dt><dd>Overfit and unstable probability estimates</dd></div></dl>
+              </article>
+              <article class="model-gate glass-panel experimental">
+                <div><span class="model-rank">Forecasting</span><span class="data-badge simulated">Experimental</span></div>
+                <h2>TimesFM 2.5</h2>
+                <p>A capable general zero-shot price forecaster, but not yet a Hermes trading engine. It stays out of committee decisions until it passes the same walk-forward benchmark.</p>
+                <dl><div><dt>Strength</dt><dd>Zero-shot quantile forecasts</dd></div><div><dt>Missing gate</dt><dd>Asset-level alpha validation</dd></div></dl>
+              </article>
+            </div>
+            <div class="glass-panel validation-protocol">
+              <div class="panel-heading"><div><h2>Model admission protocol</h2><p>What must happen before a model influences a simulated position.</p></div><button class="secondary-action" data-open-backtester>Open validation backtest</button></div>
+              <ol>
+                <li><strong>Engineer stationary inputs</strong><span>Returns, relative trends, volatility, RSI, volume surprise, drawdown, and reference-market context.</span></li>
+                <li><strong>Purge the label horizon</strong><span>An embargo separates training labels from validation and outer-test observations.</span></li>
+                <li><strong>Score probabilities</strong><span>Validation selection minimizes log loss; outer folds also report Brier score and balanced accuracy.</span></li>
+                <li><strong>Compare with a simple baseline</strong><span>Auto mode selects XGBoost only when it beats regularized logistic regression on the inner validation window.</span></li>
+                <li><strong>Apply execution assumptions</strong><span>Signals lag one observation and include configured costs, slippage, exposure, turnover, and drawdown.</span></li>
+              </ol>
+            </div>
+          </section>
+
+          <section id="backtester-research-panel" class="research-panel" role="tabpanel">
+            <div class="research-notice"><span class="data-badge simulated">Simulated</span><p>Daily-close research with one-observation execution lag. It is not an order-book simulator or forward-performance claim.</p></div>
+            <div class="backtest-lab">
+              <form id="backtest-form" class="glass-panel backtest-console">
+                <div class="panel-heading compact"><h2>Research configuration</h2><button id="apply-research-preset" class="text-action" type="button">Reset asset preset</button></div>
+                <fieldset>
+                  <legend>Signal model</legend>
+                  <label>Engine<select id="backtest-engine"><option value="auto">Validation-selected</option><option value="logistic">Logistic baseline</option><option value="xgboost">XGBoost only</option><option value="sma">SMA crossover</option></select></label>
+                  <label>Position policy<select id="position-mode"><option value="long_cash">Long / cash</option><option value="long_short">Long / short</option></select></label>
+                  <label class="sma-only" hidden>Short SMA<input id="short-window" type="number" value="20" min="2" max="200" /></label>
+                  <label class="sma-only" hidden>Long SMA<input id="long-window" type="number" value="50" min="5" max="400" /></label>
+                  <label class="model-only">Positive horizon<input id="target-horizon" type="number" value="5" min="1" max="20" /><small>observations</small></label>
+                  <label class="model-only">Long probability<input id="long-threshold" type="number" value="0.54" min="0.51" max="0.89" step="0.01" /></label>
+                  <label class="model-only">Short probability<input id="short-threshold" type="number" value="0.46" min="0.11" max="0.49" step="0.01" /></label>
+                </fieldset>
+                <fieldset class="model-only">
+                  <legend>Walk-forward design</legend>
+                  <label>Training window<input id="train-window" type="number" value="750" min="100" max="2500" /><small>observations</small></label>
+                  <label>Outer test window<input id="test-window" type="number" value="63" min="10" max="252" /><small>observations</small></label>
+                  <label>Validation share<input id="validation-fraction" type="number" value="0.20" min="0.10" max="0.40" step="0.05" /></label>
+                  <label>Optimization trials<input id="n-trials" type="number" value="10" min="1" max="30" /></label>
+                </fieldset>
+                <fieldset>
+                  <legend>Execution and risk</legend>
+                  <label>History<input id="lookback-years" type="number" value="10" min="3" max="15" /><small>years</small></label>
+                  <label>Commission<input id="cost-bps" type="number" value="5" min="0" max="100" step="0.5" /><small>bps / turnover</small></label>
+                  <label>Slippage<input id="slippage-bps" type="number" value="2" min="0" max="100" step="0.5" /><small>bps / turnover</small></label>
+                  <label>Risk-free rate<input id="risk-free-rate" type="number" value="0" min="0" max="25" step="0.1" /><small>annual %</small></label>
+                  <label class="check-label"><input id="regime-filter" type="checkbox" /><span id="regime-filter-label">Block long exposure below SPY 200-day trend</span></label>
+                </fieldset>
+                <button id="run-backtest" class="primary-action" type="submit">Run purged walk-forward test</button>
+              </form>
+              <section id="backtest-result" class="glass-panel backtest-result">
+                <div class="empty-state"><strong>No simulation run</strong><p>Start with validation-selected mode. Results include probability quality, costs, exposure, turnover, drawdown, and fold evidence.</p></div>
+              </section>
+            </div>
+          </section>
+
+          <section id="committee-research-panel" class="research-panel" role="tabpanel">
+            <div class="committee-intro glass-panel">
+              <div><h2>Evidence committee</h2><p>Four constrained roles turn the selected asset’s quantitative and headline evidence into an inspectable research memo.</p></div>
+              <div class="inline-actions"><select id="model-choice" aria-label="Quantitative baseline"><option value="XGBoost">Validated tabular baseline</option><option value="TimesFM" disabled>TimesFM · awaiting validation</option></select><button id="run-analysis" class="primary-action">Run committee</button></div>
+            </div>
+            <div class="committee-flow" aria-label="Committee process">
+              <div><b>1</b><strong>Quant baseline</strong><span>Sets the prior probability</span></div><i></i>
+              <div><b>2</b><strong>Bull analyst</strong><span>Builds the bullish thesis</span></div><i></i>
+              <div><b>3</b><strong>Bear analyst</strong><span>Builds the bearish thesis</span></div><i></i>
+              <div><b>4</b><strong>Portfolio judge</strong><span>Explains follow or override</span></div>
+            </div>
+            <div class="generated-warning"><span class="data-badge generated">Generated</span><p>This is a local-model research aid. Every claim remains subordinate to the displayed source evidence and may be wrong.</p></div>
+            <div id="analysis-output" class="agent-output glass-panel">
+              <div class="empty-state compact-empty"><strong>Committee has not run</strong><p>Run it after reviewing the model and market evidence. An unavailable local model will remain an explicit unavailable state.</p></div>
+            </div>
+          </section>
+        </section>
+
+        <section id="news-view" class="view" aria-labelledby="news-heading">
+          <div class="view-heading">
+            <div><h1 id="news-heading">News Hub</h1><p>Source headlines for <strong id="news-ticker">AAPL</strong> and the wider market.</p></div>
+            <span class="data-badge observed">Observed metadata</span>
+          </div>
+          <div class="news-hub-grid">
+            <section class="glass-panel news-column">
+              <div class="panel-heading"><div><h2>Asset headlines</h2><p id="asset-news-source">Provider metadata</p></div><button id="refresh-news" class="secondary-action">Refresh</button></div>
+              <div id="asset-news-list" class="news-feed"></div>
+            </section>
+            <section class="glass-panel news-column">
+              <div class="panel-heading"><div><h2>Market headlines</h2><p id="market-news-context">S&amp;P 500 context</p></div></div>
+              <div id="general-news-list" class="news-feed"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="portfolio-view" class="view" aria-labelledby="portfolio-heading">
+          <div class="view-heading">
+            <div><h1 id="portfolio-heading">Portfolio Overview</h1><p>Browser-local positions with provider-delayed valuation and derived risk.</p></div>
+            <span class="data-badge local">Demo · browser-local</span>
+          </div>
+          <div class="portfolio-grid">
+            <section id="portfolio-result" class="glass-panel portfolio-analytics">
+              <div class="empty-state"><strong>No portfolio analysis yet</strong><p>Add a position and calculate value, allocation, historical VaR and correlation.</p></div>
+            </section>
+            <aside class="glass-panel portfolio-manager">
+              <div class="panel-heading compact"><h2>Current holdings</h2><span id="position-count">Demo portfolio</span></div>
+              <p class="demo-note">A diversified sample is loaded on first visit. Edit or remove anything; changes stay in this browser.</p>
+              <div id="positions-list" class="positions-list"></div>
+              <form id="position-form" class="position-form">
+                <label>Ticker<input id="position-ticker" maxlength="15" placeholder="MSFT" required /></label>
+                <label>Quantity<input id="position-quantity" type="number" min="0.000001" step="any" placeholder="10" required /></label>
+                <button class="primary-action" type="submit">Add or update</button>
+              </form>
+              <button id="analyze-portfolio" class="secondary-action wide" type="button">Calculate portfolio risk</button>
+              <button id="reset-demo-portfolio" class="text-action wide" type="button">Restore demo holdings</button>
+            </aside>
+          </div>
+        </section>
+
+        <section id="academy-view" class="view" aria-labelledby="academy-heading">
+          <div class="view-heading">
+            <div><h1 id="academy-heading">Quant Academy</h1><p>Methods used by this terminal, their interpretation and their limits.</p></div>
+            <label class="academy-search"><span class="sr-only">Search glossary</span><input id="academy-search" type="search" placeholder="Search 40+ terms…" /></label>
+          </div>
+          <div id="academy-grid" class="academy-grid"></div>
+          <section class="glass-panel methodology-ledger">
+            <h2>Data classification ledger</h2>
+            <div><span class="data-badge observed">Observed</span><p>Provider-returned historical prices, listed-options metadata and source headlines.</p></div>
+            <div><span class="data-badge derived">Derived</span><p>Moving averages, RSI, volatility, allocation, correlation and historical VaR.</p></div>
+            <div><span class="data-badge predicted">Predicted</span><p>Model probabilities or forecasts for a defined horizon.</p></div>
+            <div><span class="data-badge simulated">Simulated</span><p>Historical strategy returns after configured transaction costs.</p></div>
+            <div><span class="data-badge generated">Generated</span><p>Local language-model synthesis that requires independent verification.</p></div>
+          </section>
+        </section>
+      </main>
+
+      <footer id="terminal-footer" class="terminal-footer">
+        <div class="footer-author">
+          <span>Built by <strong>Daniel Kiani</strong></span>
+          <span class="version-badge">v0.6-Beta</span>
+        </div>
+        <div class="footer-disclaimer-wrap">
+          <div class="footer-disclaimer">
+            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <span><strong>DISCLAIMER:</strong> This application is a simulated environment for research and portfolio purposes only. Agent signals do not constitute financial advice.</span>
+          </div>
+        </div>
+        <nav class="footer-links" aria-label="Daniel Kiani social and contact links">
+          <a href="https://x.com/DanielKiani78" target="_blank" rel="noreferrer" aria-label="Daniel Kiani on X" title="X (Twitter)">
+            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/daniel-kiani" target="_blank" rel="noreferrer" aria-label="Daniel Kiani on LinkedIn" title="LinkedIn">
+            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+          </a>
+          <a href="https://github.com/danielkiani" target="_blank" rel="noreferrer" aria-label="Daniel Kiani on GitHub" title="GitHub">
+            <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
+          </a>
+          <a href="mailto:danialdatak@gmail.com" aria-label="Email Daniel Kiani" title="Email Me">
+            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          </a>
+        </nav>
+      </footer>
+    </div>
+    <dialog id="events-dialog" class="events-dialog" aria-labelledby="events-dialog-title">
+      <form method="dialog" class="events-dialog-shell glass-panel">
+        <div class="panel-heading"><div><span class="eyebrow">Verified schedule</span><h2 id="events-dialog-title">Upcoming Market Calendar</h2><p id="events-source-line">Provider and official-source dates</p></div><button class="dialog-close" aria-label="Close calendar">×</button></div>
+        <div id="events-calendar" class="events-calendar"></div>
+        <p class="calendar-caveat">Dates can change. Verify the linked source before making a trading decision.</p>
+      </form>
+    </dialog>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

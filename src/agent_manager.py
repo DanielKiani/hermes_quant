@@ -4,6 +4,7 @@ import pandas as pd
 import yfinance as yf
 import sys
 import os
+from concurrent.futures import ThreadPoolExecutor
 
 # Ensure we can import the backtester locally
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -31,11 +32,13 @@ class TradingAgentManager:
             month_ago = hist['Close'].iloc[0]
             pct_change = ((current - month_ago) / month_ago) * 100
             
-            # DYNAMIC ASSET CLASSIFICATION
-            asset_type = "Cryptocurrency/Commodity" if "-" in ticker else "Corporate Equity"
+            info = tick.get_info() or {}
+            quote_type = str(info.get("quoteType") or "UNKNOWN").upper()
+            is_crypto = quote_type == "CRYPTOCURRENCY" or ticker.endswith("-USD")
+            asset_type = "Cryptocurrency" if is_crypto else quote_type.replace("_", " ").title()
             fundamental_warning = ""
-            if "-" in ticker:
-                fundamental_warning = " NOTE: This is a non-equity asset. Traditional corporate valuation metrics (like P/E ratios or earnings) do not apply. Base your thesis strictly on macroeconomics, supply/demand mechanics, fiat currency debasement, and network effects."
+            if is_crypto:
+                fundamental_warning = " NOTE: Traditional corporate valuation metrics such as earnings and P/E do not apply. Use only the supplied price, macro, network, and headline evidence."
                 
             return f"Asset Type: {asset_type}. Current Price: ${current:.2f}. 1-Month Change: {pct_change:.2f}%. {fundamental_warning}"
         except Exception:
@@ -72,7 +75,10 @@ class TradingAgentManager:
                     rsi = latest_features['RSI_14'].values[0] if 'RSI_14' in latest_features else 50.0
                     vol = latest_features['Vol_20d'].values[0] * 100 if 'Vol_20d' in latest_features else 0.0
                 
-                context = f"XGBoost Quantitative Model Probability of a positive 5-day return: {prob:.1f}%. Current RSI: {rsi:.1f}. Recent Volatility (StdDev): {vol:.2f}."
+                method = ml_data.get('method', 'tabular classifier')
+                validation_loss = ml_data.get('validation_log_loss')
+                validation_note = f" Purged validation log loss: {validation_loss:.3f}." if validation_loss is not None else ""
+                context = f"Validation-selected tabular model ({method}) probability of a positive 5-day return: {prob:.1f}%. Current RSI: {rsi:.1f}. Recent daily volatility: {vol:.2f}%.{validation_note}"
                 rules = (
                     f"1. The ML Engine Probability is your directional anchor (Baseline: >52% leans BUY, <48% leans SELL).\n"
                     f"2. You may OVERRIDE the ML baseline ONLY IF the qualitative arguments and recent news present severe, asymmetric risk/reward not captured by historical quantitative data."
@@ -101,22 +107,18 @@ class TradingAgentManager:
                 return f"TimesFM Transformer unavailable ({e}). Make sure your Python environment has the timesfm library installed.", "No ML guidelines available."
 
     def _get_news_context(self, ticker):
-        """Pre-processes raw news into a compressed, high-density format for the agents."""
+        """Builds a deterministic headline index without adding generated claims."""
         try:
-            from dashboard_utils import get_news_cached
-            raw_news = get_news_cached(ticker)
-            if not raw_news: return "No recent news available."
-            
-            news_text = ""
-            for i, n in enumerate(raw_news):
-                news_text += f"Article {i+1}: {n.get('title', 'No Title')}\nSnippet: {n.get('body', '')}\n\n"
-                
-            sys_prompt = "You are a purely objective Financial News Pre-processor. Your only job is to compress text."
-            prompt = (f"Read these recent news articles for {ticker}:\n\n{news_text}\n"
-                      f"Compress this data into a highly dense markdown list. For each distinct story, provide:\n"
-                      f"- **Headline**\n- **Impact**: 1-sentence summary of how it affects the stock.\n- **Relevance**: Score 1-5.\n"
-                      f"Output ONLY the bulleted list.")
-            return self._query_ollama(prompt, sys_prompt)
+            from src.backend.services import fetch_news
+
+            raw_news = fetch_news(ticker, limit=8).get("items", [])
+            if not raw_news:
+                return "No recent news available."
+            return "\n".join(
+                f"- Headline {index}: {item.get('title', 'Untitled')} "
+                f"(Publisher: {item.get('publisher', 'Unknown')})"
+                for index, item in enumerate(raw_news, start=1)
+            )
         except Exception as e:
             return f"News Context unavailable ({e})."
 
@@ -124,7 +126,7 @@ class TradingAgentManager:
         """Sends a prompt to the local Ollama model."""
         payload = {"model": self.model, "prompt": prompt, "system": role_description, "stream": False}
         try:
-            response = requests.post(self.api_url, json=payload, timeout=120)
+            response = requests.post(self.api_url, json=payload, timeout=45)
             response.raise_for_status()
             return response.json().get("response", "Error: No response text.")
         except requests.exceptions.RequestException as e:
@@ -137,17 +139,36 @@ class TradingAgentManager:
         news_context = self._get_news_context(ticker)
         
         # --- BULL AGENT ---
-        bull_sys = "You are a Senior Equity/Crypto Analyst at a long-biased growth fund. Your mandate is to identify asymmetric upside. Focus on revenue acceleration, network effects, institutional adoption, and macro tailwinds. Be decisive and data-driven."
-        bull_prompt = f"Asset: {ticker}\nMarket Data Context: {context}\n\nRECENT NEWS TO CONSIDER:\n{news_context}\n\nTask: Formulate a concise, high-conviction 1-paragraph bullish thesis. Ignore bearish indicators; your sole job is to argue for the maximum upside potential."
-        bull_thesis = self._query_ollama(bull_prompt, bull_sys)
-
+        bull_sys = (
+            "You are a long-biased research analyst. Use only facts explicitly present "
+            "in the supplied market context and headline index. Never invent valuation "
+            "multiples, financial metrics, products, targets, dates, or catalysts. Label "
+            "interpretation as inference and say when evidence is insufficient."
+        )
+        bull_prompt = f"Asset: {ticker}\nMarket Data Context: {context}\n\nRECENT NEWS TO CONSIDER:\n{news_context}\n\nTask: Formulate one concise paragraph containing the strongest evidence-supported bullish thesis. Do not add facts that are absent from the inputs."
         # --- BEAR AGENT ---
-        bear_sys = "You are a strict Risk Manager and Short-Seller at a quantitative hedge fund. Your mandate is capital preservation and identifying catastrophic downside. Focus on systemic risks, valuation compression, liquidity drains, and macro headwinds."
-        bear_prompt = f"Asset: {ticker}\nMarket Data Context: {context}\n\nRECENT NEWS TO CONSIDER:\n{news_context}\n\nTask: Formulate a concise, high-conviction 1-paragraph bearish thesis. Ignore bearish indicators; your sole job is to expose the maximum downside risk."
-        bear_thesis = self._query_ollama(bear_prompt, bear_sys)
+        bear_sys = (
+            "You are a skeptical risk analyst. Use only facts explicitly present in the "
+            "supplied market context and headline index. Never invent valuation multiples, "
+            "financial metrics, products, targets, dates, or catalysts. Label interpretation "
+            "as inference and say when evidence is insufficient."
+        )
+        bear_prompt = f"Asset: {ticker}\nMarket Data Context: {context}\n\nRECENT NEWS TO CONSIDER:\n{news_context}\n\nTask: Formulate a concise bearish thesis using the strongest evidence-grounded risk case without inventing facts."
+        # Bull and bear roles are independent. Run them concurrently, then pass both
+        # completed arguments to the judge so the committee remains causally ordered.
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            bull_future = executor.submit(self._query_ollama, bull_prompt, bull_sys)
+            bear_future = executor.submit(self._query_ollama, bear_prompt, bear_sys)
+            bull_thesis = bull_future.result()
+            bear_thesis = bear_future.result()
 
         # --- PORTFOLIO MANAGER (JUDGE) ---
-        pm_sys = "You are the Chief Investment Officer (CIO). Your goal is risk-adjusted absolute returns. You weigh quantitative machine learning outputs against qualitative analyst debates and news catalysts to make capital allocation decisions."
+        pm_sys = (
+            "You are a research synthesis agent, not an investment adviser. Use only the "
+            "supplied inputs. Do not introduce new facts or figures. Follow the quantitative "
+            "baseline unless you explicitly cite a supplied headline or thesis statement as "
+            "the reason for an override."
+        )
         pm_prompt = (
             f"Evaluate {ticker} for capital allocation.\n\n"
             f"QUANTITATIVE ML ENGINE ({ml_model_choice}):\n{ml_context}\n\n"
@@ -157,14 +178,22 @@ class TradingAgentManager:
             f"DECISION FRAMEWORK:\n{ml_rules}\n\n"
             f"FORMATTING RULES:\n"
             f"You must output your response in the exact structure below. Do not add conversational text outside of this structure.\n\n"
+            f"If the final decision differs from the ML baseline, write OVERRIDE: YES and cite the exact supplied evidence. Otherwise write OVERRIDE: NO. Never claim to follow the baseline while returning a different decision.\n"
+            f"OVERRIDE: [YES or NO, followed by the supplied reason]\n"
             f"SYNTHESIS: [Write a 3-4 sentence paragraph justifying your decision. Explicitly state if you are following or overriding the ML engine and why based on the news/theses.]\n"
             f"FINAL DECISION: [Must be exactly BUY, SELL, or HOLD]"
         )
         pm_response = self._query_ollama(pm_prompt, pm_sys)
 
         return {
+            "asset_context": context,
+            "quant": {
+                "requested_model": ml_model_choice,
+                "summary": ml_context,
+                "decision_framework": ml_rules,
+            },
             "bull": bull_thesis,
             "bear": bear_thesis,
             "pm": pm_response,
-            "news": news_context # Send raw news back to the UI!
+            "news": news_context,
         }

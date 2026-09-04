@@ -1,151 +1,235 @@
-![Banner](assets/hermes_banner.png)
-# 📈 Institutional AI Trading Terminal
+<p align="center">
+  <img src="assets/hermes_logo.png" width="112" alt="Hermes Quant logo" />
+</p>
 
-![Python](https://img.shields.io/badge/Python-3.13%2B-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.58%2B-red)
-![Machine Learning](https://img.shields.io/badge/ML-XGBoost%20%7C%20TimesFM-green)
-![AI](https://img.shields.io/badge/GenAI-Ollama%20%7C%20RAG-orange)
-![Quant Finance](https://img.shields.io/badge/Finance-Quant%20%7C%20Backtesting-purple)
+<h1 align="center">Hermes Quant</h1>
 
-A Bloomberg-inspired quantitative trading terminal that bridges the gap between traditional financial engineering and state-of-the-art Generative AI. This platform features an autonomous multi-agent debate system, machine learning walk-forward backtesting, and a real-time Retrieval-Augmented Generation (RAG) news pipeline.
+<p align="center">
+  <strong>Evidence before conviction.</strong><br />
+  An evidence-led market research terminal for cross-asset context, model validation,
+  strategy simulation, inspectable AI synthesis, and portfolio risk.
+</p>
 
-![Hero Dashboard](assets/dashboard.png)
-*(Main dashboard featuring dynamic asset routing, Plotly charting, and a miniaturized macro ticker tape engineered via custom CSS overrides.)*
+<p align="center">
+  <a href="https://danielkiani.github.io/hermes_quant/"><strong>Open the cinematic demo</strong></a>
+  ·
+  <a href="#run-the-live-application">Run locally</a>
+  ·
+  <a href="#research-methodology">Research methodology</a>
+</p>
 
----
+<p align="center">
+  <img alt="Version 0.6 Beta" src="https://img.shields.io/badge/version-0.6--Beta-60A5FA" />
+  <img alt="Python 3.12+" src="https://img.shields.io/badge/Python-3.12%2B-3776AB" />
+  <img alt="FastAPI" src="https://img.shields.io/badge/API-FastAPI-009688" />
+  <img alt="Vanilla web frontend" src="https://img.shields.io/badge/Frontend-HTML%20%7C%20CSS%20%7C%20JavaScript-4F7CFF" />
+  <a href="https://github.com/DanielKiani/hermes_quant/actions/workflows/ci.yml"><img alt="CI status" src="https://github.com/DanielKiani/hermes_quant/actions/workflows/ci.yml/badge.svg" /></a>
+</p>
 
-## 🎯 The Vision & Thought Process
+![Hermes Quant cinematic landing experience](assets/landing_preview.png?v=2)
 
-The intersection of AI and finance is often plagued by "wrapper" apps that simply pipe stock tickers into ChatGPT. I built this terminal to solve the fundamental flaws of that approach. Large Language Models are terrible at raw math, highly prone to hallucination when evaluating numerical trends, and suffer from context-window degradation when fed raw news data.
+Hermes Quant is a research environment—not a broker, signal-selling product, or live
+execution system. It keeps observed provider data, derived analytics, model estimates,
+historical simulations, and generated text visibly distinct. If data is unavailable,
+the interface says so instead of inventing a fallback value.
 
-**The solution was to build a decoupled, pipeline-driven architecture:**
+## Explore the terminal
 
-1. Let **Machine Learning models (XGBoost/TimesFM)** handle the heavy quantitative lifting (math, probabilities, volatility scaling).
-2. Let a **ChromaDB RAG Pipeline** handle the data ingestion and noise reduction.
-3. Let the **LLMs (Llama 3)** do what they do best: synthesize context, debate opposing viewpoints, and manage risk parameters.
+### Market Command Center
 
----
+The default desk combines a continuously moving cross-asset tape, macro pulse,
+independent trending/gainer/loser screens, upcoming events, and source-linked news.
 
-## ✨ Core Architecture & Features
+![Hermes Quant Market Command Center](assets/dashboard.png?v=2)
 
-### 🤖 Multi-Agent AI Synthesis
+### Market analysis
 
-Simulates an institutional investment committee. Instead of a single prompt, the system spins up multiple local agents (via Ollama):
+The analysis desk provides line and candlestick views, volume, RSI, moving averages,
+linear/log scales, exact-value hover, fundamentals, macro context, movers, news, and
+provenance for equities and crypto.
 
-* **The Bull Analyst:** Argues the upside case using technical breakouts and positive RAG catalysts.
-* **The Bear Risk Manager:** Actively tries to poke holes in the thesis, highlighting macroeconomic headwinds or bearish technical divergences.
-* **The Portfolio Manager (PM):** Reviews the XGBoost mathematical baseline or the TImesFm transformer baseline, weighs the Bull vs. Bear arguments, and outputs a strict JSON/Regex-parsable `BUY`, `HOLD`, or `SELL` verdict.
-![Multi-Agent AI Synthesis](assets/multiagent_ai_synth.png)
+![Hermes Quant advanced market analysis](assets/market_analysis.png?v=2)
 
-### 🧠 Machine Learning Engine
+### Strategy research
 
-Users can toggle between two distinct forecasting models:
+The backtester supports fixed SMA rules and purged walk-forward ML research. It exposes
+the target horizon, position policy, probability thresholds, regime filter, execution
+lag, commission, slippage, risk-free rate, annualization basis, turnover, cost drag,
+drawdown, and per-fold evidence.
 
-* **XGBoost Walk-Forward:** A dynamic gradient boosting model that trains on a rolling 750-day window and tests on blind 63-day out-of-sample data, mitigating the primary sin of retail backtesting: "Curve Fitting."
-* **Google TimesFM:** A state-of-the-art zero-shot time-series transformer model that generates 5-day predictive probability bands (P10 to P90 percentiles).
+![Hermes Quant strategy backtester](assets/backtester_engine.png?v=2)
 
-### 📰 RAG-Powered News Pre-processor
+### Inspectable AI committee
 
-Scrapes live financial news via DuckDuckGo and embeds it into a local ChromaDB vector database. A lightweight LLM compresses unstructured articles into a high-density, sentiment-scored context block (Impact & Relevance mapping) before feeding it to the primary agents.
-![RAG-Powered News Pre-processor](assets/news_processing.png)
-### 💼 Dynamic Portfolio & Risk Management
+A quantitative prior is challenged by separate bullish and bearish analysts before a
+portfolio judge explains whether it follows or overrides the model. Generated claims
+remain subordinate to indexed source evidence.
 
-* **95% Historical Value at Risk (VaR):** Calculates maximum expected daily drawdown based on historical volatility.
-* **Live Correlation Matrix:** Maps inter-asset relationships to ensure proper diversification.
-* **Dynamic Asset Branching:** The UI intelligently adapts its metrics based on the asset class (e.g., swapping Equities' P/E ratios for Crypto's Circulating Supply).
+![Hermes Quant multi-agent evidence committee](assets/multiagent_ai_synth.png?v=2)
 
-![Portfolio Risk](assets/portfolio.png)
-*(Real-time portfolio tracking featuring 95% Daily VaR and asset correlation matrices.)*
+### Portfolio and news
 
----
+The browser-local demonstration portfolio shows provider-delayed valuation, allocation,
+historical one-day VaR, and aligned return correlation. The news workspace keeps selected-
+asset and wider-market headlines separate and includes provider thumbnails.
 
-## 🧪 Engineering Journey: Successes & Failures
+![Hermes Quant portfolio risk workspace](assets/portfolio.png?v=2)
 
-Building a system this complex required iterating through several failed paradigms. Here are the key technical pivots:
+![Hermes Quant source-linked news workspace](assets/news_processing.png?v=2)
 
-### ❌ Failure 1: Context Overflow with Raw News Data
+## Live application and GitHub Pages demo
 
-* **The Attempt:** Initially, I scraped 5 full financial articles and dumped them directly into the LLM's prompt.
-* **The Result:** The local LLM (Llama 3 8B) choked. Inference times spiked to over 45 seconds, the model suffered from "lost in the middle" syndrome, and it started hallucinating financial metrics.
-* **The Fix:** Built a **Pre-processor LLM Agent**. Now, articles are fetched, embedded into ChromaDB, and a tiny, fast LLM passes over them to extract exactly two things: a 1-sentence Impact Summary and a 1-5 Relevance Score. This slashed token usage by 90% and resulted in hyper-accurate PM decisions.
+Hermes has two deliberately different operating modes:
 
-### ❌ Failure 2: The "Infinite Liquidity" Backtest Trap
+| Mode | Data | Available features | Purpose |
+| --- | --- | --- | --- |
+| Live local app | Provider-delayed Yahoo Finance data through FastAPI | Full market terminal, configurable backtests, options metadata, editable portfolio, and optional local Ollama committee | Development and research |
+| GitHub Pages | A clearly labeled frozen snapshot committed in `frontend/demo/snapshot.json` | Landing page, equity/crypto overview, selected terminal views, source headlines/events, demo portfolio, and a fixed-parameter SMA result | Stable, serverless portfolio demonstration |
 
-* **The Attempt:** The V1 backtester used a basic vectorized Pandas approach to test Simple Moving Average (SMA) crossovers over 5 years. It returned 800% profit.
-* **The Result:** Pure curve-fitting delusion. Vectorized backtesters assume you buy exactly at the close, with zero slippage, regardless of broader market crashes.
-* **The Fix:** Built the `MLQuantBacktester`. Added **Walk-Forward Optimization** to test on blind out-of-sample data, and implemented a **Dynamic Regime Filter** that forces the algorithm to hold cash if the S&P 500 (SPY) drops below its 200-day moving average.
+The Pages build never presents frozen values as live. Server-dependent actions that
+cannot be reproduced honestly—such as arbitrary backtests, listed-options retrieval,
+portfolio mutation, and Ollama generation—are disabled with explicit explanations.
 
-### ❌ Failure 3: Streamlit UI Grid Collapse
+## Architecture
 
-* **The Attempt:** Tried to build a dense, Bloomberg-style Top Macro Ticker Tape by nesting tiny Streamlit columns horizontally.
-* **The Result:** Streamlit's native grid system enforces strict min-widths and 16px padding. The UI broke, pushing charts onto new lines and clipping elements off the screen.
-* **The Fix:** Wrote aggressive CSS injections via `st.markdown(unsafe_allow_html=True)`. Stripped `stHorizontalBlock` padding to 0, forced Plotly containers to strict heights, and stacked the sparkline charts vertically above the text to achieve a highly responsive, institutional-grade layout.
+```mermaid
+flowchart LR
+    Browser[Browser terminal] -->|Live mode: /api| API[FastAPI research API]
+    API --> Market[Market-data adapter]
+    Market --> Yahoo[Yahoo Finance via yfinance]
+    API --> Models[Purged walk-forward model lab]
+    API --> Risk[Portfolio risk calculations]
+    API -. optional .-> Ollama[Local Ollama committee]
 
----
+    Browser -. Pages mode .-> Snapshot[Frozen, labeled JSON snapshot]
+```
 
-## 📊 Quantitative Walk-Forward Backtesting
+The current frontend is framework-free HTML, CSS, and JavaScript. Nginx serves it in
+Docker and proxies `/api/` to the backend. FastAPI can also serve the same files directly
+during local development. The original Streamlit prototype remains at `src/app.py` as a
+historical reference; it is not the production entry point.
 
-![Backtester Engine](assets/backtester_engine.png)
+## Research methodology
 
-*(Walk-Forward XGBoost ML Backtest comparing strategy returns against a Buy & Hold baseline, featuring drawdown tracking.)*
+The model lab predicts whether the close will be higher after a configurable horizon.
+It compares regularized logistic regression with XGBoost; `auto` admits the nonlinear
+candidate only when it improves validation log loss inside the training window.
 
-The terminal evaluates strategies not just on total return, but on institutional benchmarks including Maximum Drawdown, Sharpe Ratio, and Alpha generation relative to SPY.
+Each outer fold:
 
----
+1. Selects a chronological training window.
+2. Reserves its trailing segment for inner validation.
+3. Purges the target horizon at inner and outer boundaries.
+4. Tunes and compares candidates without looking at the outer test period.
+5. Refits the selected candidate on the eligible outer training data.
+6. Evaluates once on the untouched outer test window.
 
-## 🚀 Installation & Setup
+Responses expose fold boundaries, selected model, validation/test log loss, Brier score,
+balanced accuracy, embargo length, target definition, and known exclusions. Simulated
+returns use a one-observation execution lag and configurable transaction costs.
 
+Equities use exchange-day observations and 252-day annualization; crypto uses continuous
+daily observations and 365-day annualization. Futures, FX, and options strategies are not
+silently generalized from those profiles because their sessions, rolls, funding, expiry,
+and contract mechanics require dedicated implementations.
 
-### Prerequisites
+## Run the live application
 
-* Python 3.13+
+### Docker
 
-* [Ollama](https://ollama.ai/) installed locally and running (with `llama3` or your preferred model pulled).
+```bash
+docker compose up --build
+```
 
-* *Optional but recommended:* A CUDA-compatible GPU for accelerated TimesFM/XGBoost inference.
+Open `http://localhost:8080`.
 
-### Quickstart
+### Local development
 
-1. **Clone the repository:**
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements-dev.txt
+$env:HERMES_SERVE_FRONTEND="1"
+python -m uvicorn src.backend.main:app --host 127.0.0.1 --port 8080
+```
 
-   ```bash
-   git clone [https://github.com/danielkiani/hermes_quant.git](https://github.com/danielkiani/hermes_quant.git)
-   cd ai-trading-terminal
-   ```
-3. **Create a virtual environment and install dependencies:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   pip install -r requirements.txt
-   ```
+On macOS/Linux, activate `.venv/bin/activate` and prefix the server command with
+`HERMES_SERVE_FRONTEND=1`.
 
-4. **Start the local LLM server:**
+Market, portfolio, and model-research features do not require Ollama. Generated committee
+analysis does; the Docker backend expects it at `http://host.docker.internal:11434`.
 
-   Ensure Ollama is running in the background.
+## Build and publish the Pages demo
 
-   ```bash
-   ollama run llama3
-   ```
+With the local API running, refresh the frozen demonstration data and build the exact
+artifact GitHub Pages will publish:
 
-5. **Launch the Terminal:**
+```powershell
+.\.venv\Scripts\python.exe scripts\export_demo_snapshot.py
+.\.venv\Scripts\python.exe scripts\build_pages.py
+```
 
-   ```bash
-   streamlit run src/app.py
-   ```
+Preview the resulting `_site/` directory through an HTTP server—not by opening
+`index.html` directly—so module and subpath behavior matches deployment.
 
+The workflow at `.github/workflows/pages.yml` builds and deploys `_site/` on pushes to
+`main` or manual dispatch. In the repository's **Settings → Pages**, select
+**GitHub Actions** as the publishing source once; subsequent deployments are automatic.
+All app and media URLs are relative, so the site works at the repository subpath
+`/hermes_quant/`.
 
-## 🔮 Future Roadmap
+## Verification
 
-While the terminal serves as a robust research environment, the transition from Research to Live Execution requires further architectural upgrades:
+```bash
+python -m pytest -q
+node --check frontend/app.js
+node --check frontend/demo-data.js
+python scripts/build_pages.py
+```
 
-1. **Event-Driven Backtesting Engine:** Transitioning from the current vectorized backtester to an event-driven queue system to accurately model intra-bar slippage, limit order books, and latency.
+The suite covers target construction, chronological splits, leakage guards, API error
+contracts, evidence labels, frontend asset contracts, the frozen-demo manifest, and the
+Pages workflow. CI executes the same build and checks on pushes and pull requests.
 
-2. **Live Broker Integration:** Connecting the PM Agent's final outputs to a paper-trading API (like Alpaca or Interactive Brokers) for forward-testing in live markets.
+## API surface
 
-3. **Alternative Data Ingestion:** Expanding the RAG pipeline to ingest SEC EDGAR 10-K/10-Q filings for fundamental equities analysis, and Glassnode on-chain metrics for crypto assets.
+| Method | Path | Classification |
+| --- | --- | --- |
+| `GET` | `/api/health` | Service state |
+| `GET` | `/api/v1/market-overview` | Observed market tape and movers |
+| `GET` | `/api/v1/research-profile/{asset_class}` | Research configuration |
+| `GET` | `/api/v1/terminal/{ticker}` | Observed and derived |
+| `GET` | `/api/v1/options/{ticker}` | Observed listed-options metadata |
+| `GET` | `/api/v1/news/{ticker}` | Observed metadata |
+| `GET` | `/api/v1/events/{ticker}` | Observed issuer dates and Treasury auctions |
+| `POST` | `/api/v1/portfolio` | Derived |
+| `POST` | `/api/v1/backtests` | Simulated |
+| `POST` | `/api/v1/analysis` | Generated |
 
-## ⚠️ Legal Disclaimer
+Interactive OpenAPI documentation is available at `/docs` on the live API service.
 
-This software is for educational and research purposes only. The AI-generated analyses, predictive models, and backtested results do not constitute financial or investment advice. Real-world trading carries significant risk. Do not deploy real capital based on the outputs of this application.
+## Known limitations
 
-Built by Daniel Kiani - 2026
+- Yahoo Finance data may be delayed, revised, rate-limited, or unavailable.
+- Daily-close backtests are not event-driven execution simulations.
+- Deterministic costs do not model taxes, borrow availability, partial fills, spread
+  variation, funding, or market impact.
+- Equity data is not a point-in-time, survivorship-free universe.
+- Crypto research excludes order-book, exchange-fragmentation, and on-chain state.
+- Historical VaR is an estimate, not a maximum possible loss.
+- Models and generated text can be wrong. Nothing in Hermes is investment advice.
+
+## Repository map
+
+```text
+frontend/                  Static terminal, landing experience, and frozen demo adapter
+frontend/demo/             Labeled GitHub Pages demonstration snapshot
+src/backend/               FastAPI routes, schemas, and data adapters
+src/advanced_backtester.py Purged walk-forward model-selection engine
+src/agent_manager.py       Optional local Ollama research orchestration
+scripts/                   Snapshot export and Pages build tools
+tests/                     Correctness, API, frontend, and Pages contracts
+.github/workflows/         CI and GitHub Pages deployment
+```
+
+Built by [Daniel Kiani](https://github.com/danielkiani). Research and educational use only.

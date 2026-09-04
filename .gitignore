@@ -37,6 +37,7 @@ data/
 chroma_db/
 *.csv
 *.log
+_site/
 
 IDEs and Editors (VS Code, PyCharm, etc.)
 

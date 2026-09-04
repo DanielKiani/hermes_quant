@@ -1,3 +1,9 @@
+"""Experimental TimesFM 2.5 price forecaster.
+
+This model remains outside the production API until it passes the same purged
+walk-forward benchmark as the tabular candidates.
+"""
+
 import lightning as L
 import torch
 import numpy as np
@@ -31,7 +37,8 @@ class TimesFMPredictor(L.LightningModule):
             max_horizon=self.horizon_len,
             normalize_inputs=True,           # Crucial for financial data
             use_continuous_quantile_head=True, # Gives us probability bands (P10 to P90)
-            infer_is_positive=False          # Set False because returns/changes can be negative
+            infer_is_positive=True,          # This wrapper forecasts positive price levels
+            fix_quantile_crossing=True,
         ))
         print("Model loaded and compiled successfully.")
 
